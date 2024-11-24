@@ -25,7 +25,7 @@ if ~isempty(k)
 end
 
 % 构建完整的展开式字符串
-expansion = '展开式：X(z) = ';
+expansion = '展开式:X(z) = ';
 for i = 1:length(r)
     if i > 1
         expansion = [expansion ' + '];
@@ -38,7 +38,7 @@ end
 fprintf('\n%s\n', expansion);
 
 % 验证结果
-fprintf('\n验证结果：\n');
+fprintf('\n验证结果:\n');
 [num_test, den_test] = zp2tf(p, [], 1);  % 获取分母多项式
 
 % 初始化 num_recovered 为与 num_test 相同长度的零向量
@@ -91,3 +91,4 @@ function str = format_complex(z)
         str = sprintf('%.4f + %.4fi', real(z), imag(z));
     end
 end
+

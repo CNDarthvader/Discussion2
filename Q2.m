@@ -64,6 +64,26 @@ else
     end
 end
 
+% 1. 添加稳定裕度计算
+margin = 1 - max(abs(poles));
+fprintf('稳定裕度：%.4f\n', margin);
+
+% 2. 添加交互式功能
+datacursormode on;  % 允许用鼠标查看具体点的值
+
+% 3. 添加系统类型判断
+system_type = '';
+if all(abs(poles) < 1)
+    if any(abs(poles) > 0.95)
+        system_type = '临界稳定';
+    else
+        system_type = '渐进稳定';
+    end
+else
+    system_type = '不稳定';
+end
+fprintf('系统类型：%s\n', system_type);
+
 % 辅助函数：格式化复数输出
 function str = format_complex(z)
     if imag(z) == 0
@@ -76,3 +96,4 @@ function str = format_complex(z)
         str = sprintf('%.4f + %.4fi', real(z), imag(z));
     end
 end
+
